@@ -47,25 +47,25 @@
                     <label class="text-grey-900 text-left ml-1" for="1">Οχήματα κάλυψης</label>
                     <select class="p-2 border bg-gray-100 border-gray-400 rounded-lg" name="need" id="need">
                         <option
-                            value="Certainty/Comfort" {{ request('need') === 'Certainty/Comfort' ? 'selected' : '' }}>
+                            value="Certainty & Comfort" {{ request('need') === 'Certainty/Comfort' ? 'selected' : '' }}>
                             Βεβαιότητας
                         </option>
                         <option
-                            value="Variety/Stimulation" {{ request('need') === 'Variety/Stimulation' ? 'selected' : '' }}>
+                            value="Variety & Stimulation" {{ request('need') === 'Variety/Stimulation' ? 'selected' : '' }}>
                             Αβεβαιότητας
                         </option>
                         <option
-                            value="Significance/Esteem" {{ request('need') === 'Significance/Esteem' ? 'selected' : '' }}>
+                            value="Significance & Esteem" {{ request('need') === 'Significance/Esteem' ? 'selected' : '' }}>
                             Σημαντικότητας
                         </option>
-                        <option value="Love/Connection" {{ request('need') === 'Love/Connection' ? 'selected' : '' }}>
+                        <option value="Love & Connection" {{ request('need') === 'Love/Connection' ? 'selected' : '' }}>
                             Σύνδεσης/Αγάπης
                         </option>
-                        <option value="Growth/Expansion" {{ request('need') === 'Growth/Expansion' ? 'selected' : '' }}>
+                        <option value="Growth & Expansion" {{ request('need') === 'Growth/Expansion' ? 'selected' : '' }}>
                             Εξέλιξης
                         </option>
                         <option
-                            value="Contribution/Giving back" {{ request('need') === 'Contribution/Giving back' ? 'selected' : '' }}>
+                            value="Contribution & Giving back" {{ request('need') === 'Contribution/Giving back' ? 'selected' : '' }}>
                             Συνεισφοράς
                         </option>
                     </select>
