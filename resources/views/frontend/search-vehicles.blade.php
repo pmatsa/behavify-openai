@@ -95,9 +95,7 @@
         <div class="text-base text-gray-800 text-left">
             <img class="mx-auto h-12 w-auto m-5 spinning-image" src="{{ asset('openai.svg') }}"
                  alt="OpenAI">
-            <textarea name="response" rows="15" class="w-full p-2 border border-gray-400 rounded-lg">
-                {{ $response ?? '' }}
-            </textarea>
+            <textarea readonly name="response" rows="15" class="w-full p-2 border border-gray-400 rounded-lg">{{ $response ?? '' }}</textarea>
         </div>
 
     </div>
