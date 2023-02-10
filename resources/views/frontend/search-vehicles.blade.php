@@ -32,7 +32,7 @@
                     Βοηθός αναζήτησης οχημάτων</h2>
             </a>
             <p class="mt-2 text-center text-sm text-gray-600">
-                Μια έμπνευση από τους Δυναμίτες του <a target="_blank" href="https://apofasizo.gr/"
+                Μια έμπνευση από το <a target="_blank" href="https://apofasizo.gr/"
                                                        class="font-medium text-indigo-600 hover:text-indigo-500">ΑποφασίΖΩ</a>.
             </p>
             <p class="mt-2 text-center text-sm text-gray-600">
