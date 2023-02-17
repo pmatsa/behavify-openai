@@ -10,8 +10,6 @@ use OpenAI\Laravel\Facades\OpenAI;
 
 class FrontendController extends Controller
 {
-
-
     public function search(Request $request)
     {
         $response = Prompt::get()->first()->prompt_request;
@@ -29,7 +27,6 @@ class FrontendController extends Controller
             $response = str_replace('{{' . $key . '}}', $value, $response);
         }
         */
-
 
         $result = OpenAI::completions()->create([
             'prompt' => $response,

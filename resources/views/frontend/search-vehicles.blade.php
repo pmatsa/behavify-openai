@@ -20,6 +20,13 @@
             }
         }
     </style>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
+    <style>
+        .fa-spinner {
+            margin-left: 10px;
+        }
+    </style>
 </head>
 <body class="bg-gray-50 text-white text-center font-sans">
 <div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -33,14 +40,14 @@
             </a>
             <p class="mt-2 text-center text-sm text-gray-600">
                 Μια έμπνευση από το <a target="_blank" href="https://apofasizo.gr/"
-                                                       class="font-medium text-indigo-600 hover:text-indigo-500">ΑποφασίΖΩ</a>.
+                                       class="font-medium text-indigo-600 hover:text-indigo-500">ΑποφασίΖΩ</a>.
             </p>
             <p class="mt-2 text-center text-sm text-gray-600">
                 Με την απαράμιλλη βοήθεια του <a target="_blank" href="https://openai.com/"
                                                  class="font-medium text-indigo-600 hover:text-indigo-500">OpenAI</a>.
             </p>
         </div>
-        <form method="POST" action="{{ route('search') }}">
+        <form method="POST" name="searchVehiclesForm" id="searchVehiclesForm" action="{{ route('search') }}">
             @csrf
             <div class="flex items-center p-2">
                 <div class="text-left text-gray-900">
@@ -58,10 +65,12 @@
                             value="Significance & Esteem" {{ request('need') === 'Significance & Esteem' ? 'selected' : '' }}>
                             Σημαντικότητας
                         </option>
-                        <option value="Love & Connection" {{ request('need') === 'Love & Connection' ? 'selected' : '' }}>
+                        <option
+                            value="Love & Connection" {{ request('need') === 'Love & Connection' ? 'selected' : '' }}>
                             Σύνδεσης/Αγάπης
                         </option>
-                        <option value="Growth & Expansion" {{ request('need') === 'Growth & Expansion' ? 'selected' : '' }}>
+                        <option
+                            value="Growth & Expansion" {{ request('need') === 'Growth & Expansion' ? 'selected' : '' }}>
                             Εξέλιξης
                         </option>
                         <option
@@ -80,7 +89,7 @@
                 </div>
             </div>
             <div>
-                <button type="submit"
+                <button type="submit" id="search-vehicles"
                         class="mt-5 group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
               <span class="absolute inset-y-0 left-0 flex items-center pl-3">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -88,7 +97,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                 </svg>
               </span>
-                    Throw a virtual dart
+                    Αναζήτηση
                 </button>
             </div>
         </form>
@@ -96,10 +105,25 @@
             <img class="mx-auto h-12 w-auto m-5 spinning-image" src="{{ asset('openai.svg') }}"
                  alt="OpenAI">
             <label for="response">
-                <textarea readonly name="response" rows="10" class="w-full p-2 border border-gray-400 rounded-lg">{{ $response ?? '' }}</textarea>
+                <textarea readonly name="response" rows="10"
+                          class="w-full p-2 border border-gray-400 rounded-lg">{{ $response ?? '' }}</textarea>
             </label>
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+        document.querySelector("#search-vehicles").addEventListener("click", function (event) {
+            event.preventDefault();
+            this.innerHTML = '<span class="absolute inset-y-0 left-0 flex items-center pl-3"> <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/> </svg> </span> <i class="fas fa-spinner fa-spin"></i>';
+            this.disabled = true;
+            submitForm();
+        });
+    });
+
+    function submitForm() {
+        document.querySelector("#searchVehiclesForm").submit();
+    }
+</script>
 </body>
 </html>
