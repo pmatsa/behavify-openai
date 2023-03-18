@@ -12,32 +12,23 @@ class FrontendController extends Controller
 {
     public function search(Request $request)
     {
-        $content = Prompt::get()->first()->prompt_request;
+        $response = Prompt::get()->first()->prompt_request;
+        //$variables = Prompt::get()->first()->variables;
+
         $need = $request->get('need');
         $sign = $request->get('sign');
 
-        $content = str_replace('{{need}}', $need, $content);
-        $content = str_replace('{{sign}}', $sign, $content);
+        $response = str_replace('{{need}}', $need, $response);
+        $response = str_replace('{{sign}}', $sign, $response);
 
-        $openaiClient = \Tectalic\OpenAi\Manager::build(
-            new \GuzzleHttp\Client(),
-            new \Tectalic\OpenAi\Authentication(getenv('OPENAI_API_KEY'))
-        );
+        $result = OpenAI::completions()->create([
+            'prompt' => $response,
+            'model' => 'text-davinci-003',
+            'temperature' => 1,
+            'max_tokens' => 1500
+        ]);
 
-        /** @var \Tectalic\OpenAi\Models\ChatCompletions\CreateResponse $response */
-        $response = $openaiClient->chatCompletions()->create(
-            new \Tectalic\OpenAi\Models\ChatCompletions\CreateRequest([
-                'model'    => 'gpt-4',
-                'messages' => [
-                    [
-                        'role'    => 'user',
-                        'content' => $content,
-                    ],
-                ],
-            ])
-        )->toModel();
-
-        $response = $response->choices[0]->message->content;
+        $response = preg_replace("/\n(?=.*\n)/", "", $result['choices'][0]['text'], 2);
 
         return view('frontend.search-vehicles', compact('response', 'need', 'sign'));
     }
