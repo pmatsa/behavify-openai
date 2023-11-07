@@ -23,7 +23,7 @@ class FrontendController extends Controller
 
         $result = OpenAI::completions()->create([
             'prompt' => $response,
-            'model' => 'text-davinci-003',
+            'model' => 'gpt-4-1106-preview',
             'temperature' => 1,
             'max_tokens' => 1500
         ]);
